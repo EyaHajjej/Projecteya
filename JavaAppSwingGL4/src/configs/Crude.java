@@ -1,64 +1,92 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package configs;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-/**
- *
- * @author OMRANI
- */
 public class Crude {
-    MyConnexion mc = MyConnexion.getInstance();
 
-    public boolean exeCreate(String sql){
-        try {
-            Statement statement = mc.getConnection().createStatement();
-            statement.executeUpdate(sql);
-            return true;
-        } catch (SQLException ex) {
-            return false;
-        }
-    }
+   private final String url="jdbc:mysql://localhost:3306/javaappswinggl4";
+    private final String login="root";
+    private final String pwd="";
 
-    public boolean exeUpdate(String sql){
+    public Connection getConnection() {
         try {
-            Statement statement = mc.getConnection().createStatement();
-            statement.executeUpdate(sql);
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(Crude.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-
-    public boolean exeDelete(String sql){
-        try {
-            Statement statement = mc.getConnection().createStatement();
-            statement.executeUpdate(sql);
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(Crude.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-
-    public ResultSet exeRead(String sql){
-        try {
-            Statement statement = mc.getConnection().createStatement();
-            ResultSet rs;
-            rs = statement.executeQuery(sql);
-            return rs;
-        } catch (SQLException ex) {
-            Logger.getLogger(Crude.class.getName()).log(Level.SEVERE, null, ex);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            return DriverManager.getConnection(url, login, pwd);
+        } catch (ClassNotFoundException | SQLException e) {
             return null;
         }
+    }
 
+    public void closeConnection(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+            }
+        }
+    }
+
+    public ResultSet exeRead(String sql) {
+        Connection connection = getConnection();
+        if (connection != null) {
+            try {
+                PreparedStatement statement = connection.prepareStatement(sql);
+                return statement.executeQuery();
+            } catch (SQLException e) {
+                return null;
+            } finally {
+                closeConnection(connection);
+            }
+        }
+        return null;
+    }
+
+    public boolean exeCreate(String sql) {
+        Connection connection = getConnection();
+        if (connection != null) {
+            try {
+                PreparedStatement statement = connection.prepareStatement(sql);
+                return statement.executeUpdate() > 0;
+            } catch (SQLException e) {
+                return false;
+            } finally {
+                closeConnection(connection);
+            }
+        }
+        return false;
+    }
+
+    public boolean exeUpdate(String sql) {
+        Connection connection = getConnection();
+        if (connection != null) {
+            try {
+                PreparedStatement statement = connection.prepareStatement(sql);
+                return statement.executeUpdate() > 0;
+            } catch (SQLException e) {
+                return false;
+            } finally {
+                closeConnection(connection);
+            }
+        }
+        return false;
+    }
+
+    public boolean exeDelete(String sql) {
+        Connection connection = getConnection();
+        if (connection != null) {
+            try {
+                PreparedStatement statement = connection.prepareStatement(sql);
+                return statement.executeUpdate() > 0;
+            } catch (SQLException e) {
+                return false;
+            } finally {
+                closeConnection(connection);
+            }
+        }
+        return false;
     }
 }

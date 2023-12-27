@@ -17,7 +17,7 @@ import java.awt.TextArea;
  
 /**
  *
- * @author omrani
+ * @author eya
  */
 public class JavaAppSwingGL4 {
 
