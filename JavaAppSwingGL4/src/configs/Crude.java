@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class Crude {
 
-   private final String url="jdbc:mysql://localhost:3306/javaappswinggl4";
+   private final String url = "jdbc:mysql://localhost:3306/javaappswinggl4?characterEncoding=UTF-8";
     private final String login="root";
     private final String pwd="";
 

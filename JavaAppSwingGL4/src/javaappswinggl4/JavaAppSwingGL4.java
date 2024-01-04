@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package javaappswinggl4;
- 
+
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;

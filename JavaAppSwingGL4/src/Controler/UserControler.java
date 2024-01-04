@@ -22,7 +22,7 @@ import javax.swing.*;
 
 /**
  *
- * @author OMRANI
+ * @author wiki
  */
 public class UserControler {
  private Crude crude = new Crude();

@@ -4,20 +4,20 @@
  */
 package View;
 
-import Model.User;
-import Controler.UserControler;
+import Controler.VolControler;
+import Model.Vol;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author omrani
  */
-public class AuthUI extends javax.swing.JFrame {
+public class VolUI extends javax.swing.JFrame {
 
     /**
      * Creates new form AuthUI
      */
-    public AuthUI() {
+    public VolUI() {
         initComponents();
     }
 
@@ -71,7 +71,6 @@ public class AuthUI extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Liberation Mono", 0, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("developped at polytech@2023");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -236,14 +235,14 @@ public class AuthUI extends javax.swing.JFrame {
             if(pwd.equals("") ){
             JOptionPane.showMessageDialog(this, "empty password", "Alert", JOptionPane.ERROR_MESSAGE);
             }else{                
-                UserControler uc = new UserControler();
-                User u = uc.findByLoginPwd(login, pwd);
-                if (u == null){
+                VolControler vc= new VolControler();
+                Vol v = vc.findByLoginPwd(login, pwd);
+                if (v == null){
                  JOptionPane.showMessageDialog(this, "Wrong Credentials", "Alert", JOptionPane.ERROR_MESSAGE);
                 }else{
-                     JOptionPane.showMessageDialog(this, "Welcome "+ u.getFirstname()+" "+u.getLastname() , "Information", JOptionPane.INFORMATION_MESSAGE);
+                     JOptionPane.showMessageDialog(this, "Welcome "+ v.getdateDepart()+" "+v.getheureDepart() , "Information", JOptionPane.INFORMATION_MESSAGE);
                      this.setVisible(false);
-                     new IndexUI().setVisible(true);
+                     new VolUI().setVisible(true);
                 }
                 
             }
@@ -270,20 +269,21 @@ public class AuthUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AuthUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VolUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AuthUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VolUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AuthUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VolUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AuthUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VolUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AuthUI().setVisible(true);
+                new VolUI().setVisible(true);
             }
         });
     }

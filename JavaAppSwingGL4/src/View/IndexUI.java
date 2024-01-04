@@ -231,7 +231,7 @@ public class IndexUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here
-        new AuthUI().setVisible(true);
+        new UserUI().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -259,6 +259,7 @@ public class IndexUI extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(IndexUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

@@ -1,16 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Model;
 
-/**
- *
- * @author wiki
- */
 public class Aeroport {
+    private String nom;  // Ajoutez d'autres champs si nécessaire
 
-    public Aeroport(String string) {
+    public Aeroport(String nom) {
+        this.nom = nom;
     }
-    
+
+    // Ajoutez des getters et setters si nécessaire
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    // Ajoutez d'autres méthodes si nécessaire
 }
